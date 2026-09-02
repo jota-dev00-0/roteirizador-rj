@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Rotas from "../components/Rotas";
 import { TRUCK_LABELS } from "../data/entregas";
-import { otimizarRotas } from "../services/api";
+import { otimizarRota } from "../services/api";
 
 const Roteirizador = () => {
   const [entregas, setEntregas] = useState([]);
@@ -90,7 +90,7 @@ Responda SOMENTE em JSON válido, sem markdown, sem texto extra:
 }`;
 
     try {
-      const parsed = await otimizarRotas(prompt);
+      const parsed = await otimizarRota(prompt);
       setRotas(parsed);
       setTab("rotas");
     } catch (err) {
