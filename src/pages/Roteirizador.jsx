@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 import { useState, useCallback } from "react";
+=======
+import {useState, useCallback } from "react";
+>>>>>>> services-ajustes-pr
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Rotas from "../components/Rotas";
 <<<<<<< HEAD
 import { TRUCK_LABELS } from "../data/entregas";
+<<<<<<< HEAD
 import { otimizarRotas } from "../services/api";
 =======
 import { DEMO_ENTREGAS, TRUCK_LABELS } from "../data/entregas";
 import { otimizarRota } from "../services/api";
 >>>>>>> 7c7ac16 (Refatora chamadas da Groq para função serverless)
+=======
+import { otimizarRota } from "../services/api";
+>>>>>>> services-ajustes-pr
 
 const Roteirizador = () => {
   const [entregas, setEntregas] = useState([]);
@@ -98,8 +106,13 @@ Responda SOMENTE em JSON válido, sem markdown, sem texto extra:
       const parsed = await otimizarRota(prompt);
       setRotas(parsed);
       setTab("rotas");
+<<<<<<< HEAD
     } catch {
       setError("Erro ao processar a otimização. Verifique a conexão e tente novamente.");
+=======
+    } catch (err) {
+      setError("Erro ao processar a otimização. Verifique a conexão e tente novamente." + (err.message ? ` (${err.message})` : ""));
+>>>>>>> services-ajustes-pr
     } finally {
       setLoading(false);
     }
