@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import {useState, useCallback } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Rotas from "../components/Rotas";
@@ -94,7 +94,7 @@ Responda SOMENTE em JSON válido, sem markdown, sem texto extra:
       setRotas(parsed);
       setTab("rotas");
     } catch (err) {
-      setError("Erro ao processar a otimização. Verifique a conexão e tente novamente.");
+      setError("Erro ao processar a otimização. Verifique a conexão e tente novamente." + (err.message ? ` (${err.message})` : ""));
     } finally {
       setLoading(false);
     }
