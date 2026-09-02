@@ -39,7 +39,7 @@ cd roteirizador-rj
 npm install
 
 # Crie o arquivo de ambiente
-echo "VITE_GROQ_API_KEY=sua-chave-aqui" > .env
+echo "GROQ_API_KEY=sua-chave-aqui" > .env
 
 # Inicie o servidor
 npm run dev

@@ -1,9 +1,14 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Rotas from "../components/Rotas";
+<<<<<<< HEAD
 import { TRUCK_LABELS } from "../data/entregas";
 import { otimizarRotas } from "../services/api";
+=======
+import { DEMO_ENTREGAS, TRUCK_LABELS } from "../data/entregas";
+import { otimizarRota } from "../services/api";
+>>>>>>> 7c7ac16 (Refatora chamadas da Groq para função serverless)
 
 const Roteirizador = () => {
   const [entregas, setEntregas] = useState([]);
@@ -90,10 +95,10 @@ Responda SOMENTE em JSON válido, sem markdown, sem texto extra:
 }`;
 
     try {
-      const parsed = await otimizarRotas(prompt);
+      const parsed = await otimizarRota(prompt);
       setRotas(parsed);
       setTab("rotas");
-    } catch (err) {
+    } catch {
       setError("Erro ao processar a otimização. Verifique a conexão e tente novamente.");
     } finally {
       setLoading(false);
