@@ -138,12 +138,11 @@ const Sidebar = ({
             <div className="hint">
               Cole abaixo, uma entrega por linha:<br />
               <strong style={{ color: "#666" }}>Nome;Endereço;Janela;Volume</strong><br /><br />
-              Exemplo:<br />
-              João Silva;Rua das Flores 100, Copacabana, RJ;08:00-12:00;Grande
+              Informe os dados reais para importar.
             </div>
             <textarea
               className="csv-area"
-              placeholder="João Silva;Rua das Flores 100, Copacabana, RJ;08:00-12:00;Grande\nMaria Costa;Av. Atlântica 500, Copacabana, RJ;09:00-13:00;Médio"
+              placeholder="Nome;Endereço;Janela;Volume"
               value={csvText}
               onChange={e => setCsvText(e.target.value)}
             />

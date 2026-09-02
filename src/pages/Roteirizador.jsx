@@ -2,11 +2,11 @@ import React, { useState, useCallback } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Rotas from "../components/Rotas";
-import { DEMO_ENTREGAS, TRUCK_LABELS } from "../data/entregas";
+import { TRUCK_LABELS } from "../data/entregas";
 import { otimizarRotas } from "../services/api";
 
 const Roteirizador = () => {
-  const [entregas, setEntregas] = useState(DEMO_ENTREGAS);
+  const [entregas, setEntregas] = useState([]);
   const [numCaminhoes, setNumCaminhoes] = useState(6);
   const [loading, setLoading] = useState(false);
   const [rotas, setRotas] = useState(null);
@@ -35,7 +35,7 @@ const Roteirizador = () => {
         const p = l.split(";");
         return {
           id: Date.now() + i,
-          cliente: p[0]?.trim() || `Cliente ${i + 1}`,
+          cliente: p[0]?.trim() || "",
           endereco: p[1]?.trim() || "",
           janela: p[2]?.trim() || "08:00-18:00",
           volume: p[3]?.trim() || "Médio"
