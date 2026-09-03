@@ -29,8 +29,8 @@ export default async function handler(req, res) {
     });
 
     const completion = await groq.chat.completions.create({
+      model: "openai/gpt-oss-20b",
       messages: [{ role: "user", content: prompt }],
-      model: "llama-3.3-70b-versatile",
       max_tokens: 1000,
       response_format: { type: "json_object" },
     });
