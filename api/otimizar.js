@@ -9,8 +9,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método não permitido" });
   }
 
-  
-
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
     const { prompt } = body || {};
@@ -29,8 +27,18 @@ export default async function handler(req, res) {
     });
 
     const completion = await groq.chat.completions.create({
-      model: "openai/gpt-oss-20b",
-      messages: [{ role: "user", content: prompt }],
+      model: "llama-3.3-70b-versatile",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Você é um assistente especialista em logística. Responda APENAS em formato JSON válido.",
+        },
+        {
+          role: "user",
+          content: `${prompt}\n\nRetorne o resultado exclusivamente em formato JSON.`,
+        },
+      ],
       max_tokens: 1000,
       response_format: { type: "json_object" },
     });
