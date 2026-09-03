@@ -1,17 +1,33 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método não permitido" });
   }
 
-  const { prompt } = req.body;
+  
 
   try {
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const { prompt } = body || {};
+
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt é obrigatório" });
+    }
+
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: "Chave de API não configurada" });
+    }
+
+    const groq = new Groq({
+      apiKey,
+    });
+
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
       model: "llama-3.3-70b-versatile",
